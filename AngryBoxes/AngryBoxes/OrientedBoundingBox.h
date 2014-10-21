@@ -4,7 +4,7 @@
 #include "Vector2.h"
 #include <cmath>
 
-class OBB2D {
+class OrientedBoundingBox {
 private:
 	float width;
 	float height;
@@ -33,7 +33,7 @@ private:
 	}
 
 	//Will return true if 'other' overlaps one dimension of 'this'
-	bool Overlaps(const OBB2D& other) const{
+	bool Overlaps(const OrientedBoundingBox& other) const{
 		for (int a = 0; a < 2; a++){
 
 			float t = other.corner[0].dot(axis[a]);
@@ -64,8 +64,9 @@ private:
 	}
 
 public:
+	OrientedBoundingBox() { }
 
-	OBB2D(const Vector2 center, const float w, const float h, float angle)
+	OrientedBoundingBox(const Vector2 center, const float w, const float h, float angle)
 	{
 		Vector2 X( cos(angle), sin(angle));
 		Vector2 Y(-sin(angle), cos(angle));
